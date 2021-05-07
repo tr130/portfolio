@@ -1,0 +1,42 @@
+@import 'normalize', 'variables', 'sidebar', 'banner', 'projects', 'contact', 'aboutme', 'codingexamples';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin-left: $sidebar-width;
+}
+
+.up {
+  //position: relative;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.up-link {
+  //position: absolute;
+  //bottom: 10vh;
+  //left: -1000px;
+  //right: -1000px;
+  //line-height: 1;
+  @include regular;
+  color: $primary-color;
+  text-decoration: none;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  .fas {
+    margin-bottom: -0.5rem;
+    font-size: 1.5rem;
+  }
+
+  &:hover {
+    color: $secondary-color;
+  }
+
+}

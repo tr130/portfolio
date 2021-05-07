@@ -1,0 +1,68 @@
+$sidebar-width: 8rem;
+$primary-color: #242b33;
+$secondary-color: #920303;
+$standard-margin: 2rem 1rem 1rem 1rem;
+
+@media only screen and (min-width: 2000px) {
+  .sidebar {
+    width: 12rem !important;
+  }
+
+  main {
+    margin-left: 12rem !important;
+  }
+}
+
+@mixin light {
+  font-family: alegreya-sans, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin light-italic {
+  font-family: alegreya-sans, sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+@mixin regular {
+  font-family: alegreya-sans, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin regular-italic {
+  font-family: alegreya-sans, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+@mixin bold {
+  font-family: alegreya-sans, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin small-caps {
+  font-family: alegreya-sans-sc, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin small-caps-italic {
+  font-family: alegreya-sans-sc, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+@mixin small-caps-bold {
+  font-family: alegreya-sans-sc, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin small-caps-bold-italic {
+  font-family: alegreya-sans-sc, sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}

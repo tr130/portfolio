@@ -1,0 +1,53 @@
+.contact {
+  @include regular;
+  margin: $standard-margin;
+
+  p {
+    padding-top: 1rem;
+  }
+   
+  &-info {
+    margin-right: 1.5rem;
+  }
+  
+  form {
+    padding-left: 0;
+  }
+
+  .form-group {
+    padding-left: 0;
+    padding-right: 0.75rem;
+  }
+  input, textarea {
+    margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  border-style: hidden;
+  background-color: #eee;
+  width: 100%;
+  }
+
+  input:focus, textarea:focus {
+    outline: none;
+  box-shadow: 0 0 5px $primary-color;
+  }
+
+  input[type="submit"] {
+    width: 8rem;
+    border: 1px solid $primary-color;
+    &:hover {
+      background-color: $secondary-color;
+      color: #eee;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .contact-form {
+  padding-left: 1.5rem !important;
+  padding-right: 0 !important;
+  }
+
+  .form-group {
+    padding-right: 0 !important;
+  }
+}

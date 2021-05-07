@@ -1,0 +1,42 @@
+.banner {
+  height: 100vh;
+  background-image: url("/images/pexels-lukas-mayer-785429.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-link {
+    position: absolute;
+    bottom: 10vh;
+    @include regular;
+    color: white;
+    text-decoration: none;
+
+    .fas {
+      margin-top: -1rem;
+    }
+
+    &:hover {
+      color: lighten($primary-color, 70%);
+    }
+  }
+
+  .greeting {
+    padding-top: 35vh;
+    h1 {
+      @include regular;
+      position: relative;
+      font-size: 3rem;
+    }
+
+    h3 {
+      @include light-italic;
+      font-size: 2rem;
+    }
+  }
+
+}
