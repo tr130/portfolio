@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="https://use.typekit.net/jyk1fdu.css">
   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-  <title>Henry's Golding Portfolio</title>
+  <title>Henry Golding's Portfolio | Coding Examples</title>
 </head>
 
 <body>
@@ -59,7 +59,187 @@
   <main>
     <section class="aboutme">
     <h1 class="aboutme-header">Coding Examples</h1>
-    <p class="aboutme-text">Coming soon.</p>
+
+    <div class="code-example">
+      <h2>Mixin for setting colours on service card based on a map of themes.</h2>
+      <p>As part of my Netmatters Homepage project, I used mixins and maps throughout my SCSS files in order to 
+        set the colours of various elements based on the colours in the themes. Here is an example of how I set the 
+        colours for the grid of services cards. The results can be seen <a href="https://netmatters.henry-golding.netmatters-scs.co.uk/#services" target="blank">here</a>.
+      </p>
+    <div class="code-container">
+      <h4 class="code-toggle code-toggle-upper">See the code</h4>
+      <div class="code-text">
+      <pre>
+        <code>
+//map containing hex values for page colours
+$themes: (
+  'webd': #926fb1,
+  'it': #4183d7,
+  'tele': #d64541,
+  'besp': #67809f,
+  'digm': #2ecc71,
+  'cybs': #f62459,
+  'contact': #999aa2,
+  'devt': #926fb1,
+  'culture': #ffffff,
+  'base': #333645,
+);
+
+/* Mixin setting colour scheme.
+Based on class names containing theme key mixin
+sets reversible colour scheme with corresponding
+colour value. The mixin is called elsewhere under
+a rule:
+
+  .services_item {
+    @include switchthemes($themes)
+  }
+
+and relevant elements have class names such as
+.services_item-webd .services_item-it */
+
+@mixin switchthemes($map) {
+
+  //loop through keys and values in map
+  @each $theme,
+  $color in $map {
+
+    //select key-value pair based on class name
+    &-#{$theme} {
+      background-color: white;
+
+      .fa-circle {
+        color: $color;
+      }
+
+      .fa-stack-1x {
+        color: white;
+      }
+
+      .btn {
+        color: white;
+        background-color: $color;
+      }
+    }
+
+    &-#{$theme}:hover {
+      background-color: $color;
+      color: white;
+
+      .fa-circle {
+        color: white;
+      }
+
+      .btn,
+      .services_item_rule {
+        background-color: white;
+        color: $color;
+      }
+
+      .fa-stack-1x {
+        color: $color;
+      }
+    }
+  }
+}
+        </code>
+      </pre>
+      <h4 class="code-toggle code-toggle-lower">Hide the code</h4>
+    </div>
+    </div>
+    </div>
+
+    <div class="code-example">
+      <h2>Flask route handling an order submitted on ecommerce site</h2>
+      <p>Written as a proof of concept with no pretensions to being a secure shopping platform, this is
+        part of my <a href="https://nfi-wine-merchants.herokuapp.com" target="_blank">NFI Wine Merchants</a> Flask app. 
+        It defines a route for handling the conclusion of a purchase. To see it in action, <a href="https://nfi-wine-merchants.herokuapp.com" target="_blank">
+          create an account and buy some wine</a> (pretend wine).
+      </p>
+    <div class="code-container">
+      <h4 class="code-toggle code-toggle-upper">See the code</h4>
+      <div class="code-text">
+      <pre>
+        <code>
+#route is only called when form submitted using post
+
+@bp.route('confirmation', methods=('POST',))
+def confirmation():
+    error = None
+    db = get_db()
+
+    #get total and postage values from checkout form
+    total = float(request.form['total'])
+    postage = float(request.form['postage'])
+
+    #get shopping cart from session cookie
+    cart = session['shopping_cart']
+
+    #initalize check total variable to check for errors
+    checktotal = 0
+
+    #check that user is logged in
+    if g.user == None:
+        error = 'You need to log in to complete your order'
+
+    #check that cart is not empty
+    if cart == None:
+        error = "Your cart appears to be empty. Please try again. You haven't been charged."
+
+    #calculate total of items in shopping cart
+    for item in cart:
+        checktotal += cart[item]['totalprice']
+    checktotal += postage
+
+    #check that total submitted through checkout form is not different to total of items in cart
+    if checktotal != total:
+        error = "Something went wrong. Please try again. You haven't been charged."
+    
+    #if any checks failed, redirect user to checkout summary page with error message
+    if error is not None:
+        flash(error)
+        return redirect(url_for('checkout.summary'))
+
+    #check that items in cart are still in stock. This was done before checkout view, but is repeated
+    #here in case items have gone out of stock before checkout form submitted
+    for item in cart:
+        stock = db.execute('SELECT stocklevel FROM stock WHERE id = ?', (item,)).fetchone()
+        session['shopping_cart'][item]['stocklevel'] = stock[0]
+
+        #if any item quantity has fallen below stocklevel, stop the purchase and return to cart
+        if stock[0] < cart[item]['quantity']:
+            error = "We're afraid there's insufficient stock for one of your items. Please amend your cart"
+            flash(error)
+            return redirect(url_for('shopfront.ShowCart'))
+
+
+    #the following code runs only if all previous checks have passed
+
+    #create a new record in orders table, and immediately get the order id, then commit the changes
+    db.execute('INSERT INTO orders (customer_id, totalprice) VALUES (?, ?)', (g.user['id'], total))
+    order = db.execute('SELECT last_insert_rowid()').fetchone()
+    db.commit()
+
+    #update stocklevel, and create individual transaction records for each item, linked to the order
+    for item in cart:
+        db.execute('UPDATE stock SET stocklevel = stocklevel - ? WHERE id = ?', (cart[item]['quantity'], item))
+        db.execute('INSERT INTO transactions (order_id, item_id, quantity, unitprice, totalprice) 
+                  VALUES (?, ?, ?, ?, ?)', (order[0], item, cart[item]['quantity'], cart[item]['unitprice'], cart[item]['totalprice']))
+    db.commit()
+
+    #clear the session cart
+    session['shopping_cart'].clear()
+    session.modified = True
+    cart = session['shopping_cart']
+
+    #render the confirmation page with order number
+    return render_template('checkout/confirmation.html', ordernum=order)
+        </code>
+      </pre>
+      <h4 class="code-toggle code-toggle-lower">Hide the code</h4>
+    </div>
+    </div>
+    </div>
     </section>
   </main>
   <script src="https://kit.fontawesome.com/6024042655.js" crossorigin="anonymous"></script>
@@ -67,6 +247,7 @@
     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
   </script>
   <script src="sidebar.js"></script>
+  <script src="codingexamples.js"></script>
 </body>
 
 </html>

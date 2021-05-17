@@ -40,3 +40,9 @@
   }
 
 }
+
+@media only screen and (max-height:420px) {
+  .greeting {
+    padding-top: 20vh !important;
+  }
+}
