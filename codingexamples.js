@@ -1,5 +1,5 @@
 const codeText = document.querySelectorAll('.code-text');
-const examples = document.querySelector('.aboutme');
+const examples = document.querySelector('.code');
 
 for (let i = 0; i < codeText.length; i++) {
   codeText[i].style.display = 'none';

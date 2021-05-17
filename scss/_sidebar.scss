@@ -71,11 +71,11 @@
 #sidebar-open, #sidebar-close {
   z-index: 9;
   position: fixed;
-  top: 1.5rem;
+  top: 4.5rem;
   padding: 0 0.25rem 0.25rem 1.5rem;
   font-size: 2rem;
   background: $secondary-color;
-  color: $primary-color;
+  color: lighten($primary-color, 50%);
   border: none;
   line-height: 1;
   display:none;
