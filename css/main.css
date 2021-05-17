@@ -683,10 +683,6 @@ template {
   padding-bottom: 0.25rem;
 }
 
-html {
-  overflow-x: hidden;
-}
-
 .code {
   font-family: alegreya-sans, sans-serif;
   font-weight: 400;
