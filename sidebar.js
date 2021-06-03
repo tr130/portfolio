@@ -1,15 +1,37 @@
-const menuOut = document.getElementById('sidebar-open')
-const sidebar = document.getElementById('sidebar-main')
-const menuIn = document.getElementById('sidebar-close')
+const menuOut = document.getElementById('sidebar-open');
+const sidebar = document.querySelector('header');
+const main = document.querySelector('main');
+const width = 128;
 
 menuOut.addEventListener("click", function() {
-  sidebar.style.display = "block";
-  menuOut.style.display = "none";
-  menuIn.style.display = "block";
+    sidebar.style.left = 0;
+  menuOut.style.opacity = 0;
+  menuOut.style.left = width + 'px';
+  main.style.opacity = 0.4;
+  setTimeout( function() {
+    menuOut.style.display = 'none';
+    main.addEventListener('click', closeMenu);
+  }, 1000);
 })
 
-menuIn.addEventListener("click", function() {
-  sidebar.style.display = "none";
-  menuOut.style.display = "block";
-  menuIn.style.display = "none";
+
+function closeMenu(e) {
+  e.preventDefault();
+  
+  menuOut.style.display = 'block';
+  
+  setTimeout( function() {
+    sidebar.style.left = 0 - width + 'px';
+    main.style.opacity = 1;
+    menuOut.style.left = 0;
+    menuOut.style.opacity = 1;
+  }, 10);
+}
+
+window.addEventListener('resize', function() {
+  if (window.innerWidth > 576) {
+  sidebar.style='';
+  menuOut.style='';
+  main.style='';
+  }
 })

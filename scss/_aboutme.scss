@@ -6,7 +6,7 @@ flex-direction: column;
 align-items: center;
   &-header {
     padding-top: 1.5rem;
-    font-size: 4.768em;
+    font-size: 4.768rem;
   text-align: center;
   max-width: 80%;
   }
@@ -15,7 +15,7 @@ align-items: center;
     width: 80vw;
 max-width: 30em;
 line-height: 1.5;
-margin: 0 0 1.54em;
+margin: 0 0 1.54rem;
 font-size: 1.5rem;
 text-align: justify;
 hyphens: auto;
@@ -43,7 +43,7 @@ p::first-line {
   @include regular-italic;
 
   max-width: 80%;
-  text-align: left;
+  text-align: center;
     font-size: 2.441em;
     color: $secondary-color;
 }
@@ -56,3 +56,17 @@ p::first-line {
   }
 }
 
+@media only screen and (max-width: 576px) {
+  .aboutme {
+    &-header {
+      font-size: 2rem;
+    }
+    &-text {
+      font-size: 1.1rem;
+      width: 90vw;
+    }
+    &-subtitle {
+      font-size: 1.3rem;
+    }
+  }
+}

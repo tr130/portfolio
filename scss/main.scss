@@ -8,6 +8,11 @@
 
 main {
   margin-left: $sidebar-width;
+  //position: absolute;
+  top: 0;
+  //width: 100vw;
+  transition: all 1s ease-in-out;
+  //background-color: $primary-color;
 }
 
 .up {

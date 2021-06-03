@@ -346,6 +346,12 @@ template {
   }
 }
 
+header {
+  position: relative;
+  transition: all 1s ease-in-out;
+  height: 0;
+}
+
 .sidebar {
   font-family: alegreya-sans, sans-serif;
   font-weight: 400;
@@ -355,11 +361,13 @@ template {
   width: 8rem;
   background-color: #f1f1f1;
   position: fixed;
+  top: 0;
   height: 100%;
   overflow: auto;
   text-align: center;
   color: #242b33;
   z-index: 9;
+  transition: all 1s ease-in-out;
 }
 
 .sidebar .initials {
@@ -421,6 +429,7 @@ template {
   z-index: 9;
   position: fixed;
   top: 4.5rem;
+  left: 0;
   padding: 0 0.25rem 0.25rem 1.5rem;
   font-size: 2rem;
   background: #920303;
@@ -429,6 +438,7 @@ template {
   line-height: 1;
   display: none;
   opacity: 90%;
+  transition: all 1s ease-in-out;
 }
 
 #sidebar-open:hover, #sidebar-close:hover {
@@ -443,8 +453,8 @@ template {
   #sidebar-open {
     display: block;
   }
-  .sidebar {
-    display: none;
+  header {
+    left: -8rem;
   }
   main {
     margin-left: 0 !important;
@@ -455,14 +465,14 @@ template {
   #sidebar-open, #sidebar-close {
     display: none !important;
   }
-  .sidebar {
-    display: block !important;
+  header {
+    left: 0;
   }
 }
 
 .banner {
   height: 100vh;
-  background-image: url("/images/pexels-lukas-mayer-785429.jpg");
+  background-image: url("../images/pexels-lukas-mayer-785429.jpg");
   background-repeat: no-repeat;
   background-position: center;
   text-align: center;
@@ -607,7 +617,7 @@ template {
   color: #eee;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767.5px) {
   .contact-form {
     padding-left: 1.5rem !important;
     padding-right: 0 !important;
@@ -628,7 +638,7 @@ template {
 
 .aboutme-header {
   padding-top: 1.5rem;
-  font-size: 4.768em;
+  font-size: 4.768rem;
   text-align: center;
   max-width: 80%;
 }
@@ -638,7 +648,7 @@ template {
   width: 80vw;
   max-width: 30em;
   line-height: 1.5;
-  margin: 0 0 1.54em;
+  margin: 0 0 1.54rem;
   font-size: 1.5rem;
   text-align: justify;
   hyphens: auto;
@@ -669,7 +679,7 @@ template {
   font-weight: 400;
   font-style: italic;
   max-width: 80%;
-  text-align: left;
+  text-align: center;
   font-size: 2.441em;
   color: #920303;
 }
@@ -681,6 +691,19 @@ template {
 
 .aboutme li {
   padding-bottom: 0.25rem;
+}
+
+@media only screen and (max-width: 576px) {
+  .aboutme-header {
+    font-size: 2rem;
+  }
+  .aboutme-text {
+    font-size: 1.1rem;
+    width: 90vw;
+  }
+  .aboutme-subtitle {
+    font-size: 1.3rem;
+  }
 }
 
 .code {
@@ -757,6 +780,8 @@ template {
 
 main {
   margin-left: 8rem;
+  top: 0;
+  transition: all 1s ease-in-out;
 }
 
 .up {

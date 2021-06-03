@@ -7,32 +7,33 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="https://use.typekit.net/jyk1fdu.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
   <title>Henry Golding's Portfolio</title>
 </head>
 <body>
   <header>
-    <button id="sidebar-open">
-      <span id="sidebar-open-out" class="iconify" data-icon="line-md:menu-fold-right" data-inline="false"></span>
-    </button>
-    <button id="sidebar-close">
-      <span id="sidebar-open-in" class="iconify" data-icon="line-md:menu-fold-left" data-inline="false"></span>
+    <button id="sidebar-open" class="sidebar-open">
+      <span id="sidebar-open-out" class="sidebar-open iconify" data-icon="line-md:menu-fold-right" data-inline="false"></span>
     </button>
     <div id="sidebar-main" class="sidebar">
       <div class="initials"><a href="index.html">HG</a></div>
       <nav>
         <ul class="navlist">
           <li>
-            <a href="/aboutme.html">About Me</a>
+            <a href="aboutme.html">About Me</a>
           </li>
           <li>
             <a href="#projects">My Portfolio</a>
           </li>
           <li>
-            <a href="/codingexamples.html">Coding Examples</a>
+            <a href="codingexamples.html">Coding Examples</a>
           </li>
           <li>
-            <a href="/scsscheme.html">SCS Scheme</a>
+            <a href="scsscheme.html">SCS Scheme</a>
           </li>
           <li class="contact-link">
             <a href="#contact">Contact Me</a>
@@ -62,7 +63,7 @@
     <section class="projects row" id="projects">
       <div class="projects-container col-xs-12 col-md-6 col-lg-4">
         <a class="card" href="https://netmatters.henry-golding.netmatters-scs.co.uk" target="_blank">
-        <img src="/images/netmatters.jpg" alt="netmatters homepage" class="card-img-top">
+        <img src="images/netmatters.jpg" alt="netmatters homepage" class="card-img-top">
         <h2>Netmatters Homepage</h2>
         <p>A recreation of the Netmatters homepage, built using HTML, SCSS and Javascript. 
           Works responsively and is compatible with all browsers, including the silly ones.</p>
@@ -70,7 +71,7 @@
       </div>
       <div class="projects-container col-xs-12 col-md-6 col-lg-4">
         <a class="card" href="https://nfi-wine-merchants.herokuapp.com" target="_blank">
-        <img src="/images/nfi-wine-merchants.jpg" alt="nfi wine merchants" class="card-img-top">
+        <img src="images/nfi-wine-merchants.jpg" alt="nfi wine merchants" class="card-img-top">
         <h2>NFI Wine Merchants</h2>
         <p>An e-commerce app, built using Flask and SQLite. Working prototype featuring account 
           creation and administration, and the ability to make and view orders.</p>
@@ -78,28 +79,28 @@
       </div>
       <div class="projects-container col-xs-12 col-md-6 col-lg-4">
         <a class="card" href="" target="_blank">
-        <img src="/images/placeholder.jpg" alt="" class="card-img-top">
+        <img src="images/placeholder.jpg" alt="" class="card-img-top">
         <h2>Project Three</h2>
         <p>Description</p>
       </a>
       </div>
       <div class="projects-container col-xs-12 col-md-6 col-lg-4">
         <a class="card" href="" target="_blank">
-        <img src="/images/placeholder.jpg" alt="" class="card-img-top">
+        <img src="images/placeholder.jpg" alt="" class="card-img-top">
         <h2>Project Four</h2>
         <p>Description</p>
       </a>
       </div>
       <div class="projects-container col-xs-12 col-md-6 col-lg-4">
         <a class="card" href="" target="_blank">
-        <img src="/images/placeholder.jpg" alt="" class="card-img-top">
+        <img src="images/placeholder.jpg" alt="" class="card-img-top">
         <h2>Project Five</h2>
         <p>Description</p>
       </a>
       </div>
       <div class="projects-container col-xs-12 col-md-6 col-lg-4">
         <a class="card" href="" target="_blank">
-        <img src="/images/placeholder.jpg" alt="" class="card-img-top">
+        <img src="images/placeholder.jpg" alt="" class="card-img-top">
         <h2>Project Six</h2>
         <p>Description</p>
       </a>
@@ -109,7 +110,7 @@
       <div class="contact-info col-xs-12 col-md-4">
         <h2>Get in Touch</h2>
         <p>I'd love to hear from you. You can email me at:</p>
-        <a href="mailto: henry.golding@netmatters-scs.com">henry.golding@netmatters-scs.com</a>
+        <a href="mailto:henry.golding@netmatters-scs.com">henry.golding@netmatters-scs.com</a>
         <p>Alternatively, please fill in the contact form and I'll get back to you.</p>
       </div>
       <form class="contact-form col-xs-12 col-md-8 row" action="" method="post">
@@ -118,7 +119,7 @@
         <div class="form-group col-xs-12"><input class="" type="email" name="email" id="email" placeholder="Email address*" required></div>
         <div class="form-group col-xs-12"><input class="" type="text" name="subject" id="subject" placeholder="Subject"></div>
         <div class="form-group col-xs-12"><textarea class="" name="message" id="message" cols="30" rows="8" placeholder="Message*" required></textarea></div>
-        <div class="form-group"><input type="submit" value="Submit"></div>
+        <div class="form-group"><input id="submit_btn" type="submit" value="Submit"></div>
       </form>
     </section>
     <section class="up">
@@ -132,5 +133,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
   <script src="sidebar.js"></script>
   <script src="banner.js"></script>
+  <script src="contact.js"></script>
 </body>
 </html>
