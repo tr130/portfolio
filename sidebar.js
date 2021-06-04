@@ -25,7 +25,9 @@ function closeMenu(e) {
     main.style.opacity = 1;
     menuOut.style.left = 0;
     menuOut.style.opacity = 1;
+    main.removeEventListener('click', closeMenu);
   }, 10);
+  
 }
 
 window.addEventListener('resize', function() {
