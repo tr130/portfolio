@@ -708,6 +708,7 @@ header {
 
 #treehouse-badges {
   margin-bottom: 2rem;
+  max-width: 45rem;
 }
 
 #treehouse-badges div img {

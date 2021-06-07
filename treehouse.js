@@ -19,7 +19,7 @@ function showTreehouseInfo(data) {
 
   for (let i = 0; i < data.badges.length; i++) {
     let badgeContainer = document.createElement('div');
-    badgeContainer.className = 'col-4 col-sm-3 col-md-2 col-xl-1';
+    badgeContainer.className = 'col-3 col-md-2';
     let badge = document.createElement('img');
     let topic = document.createElement('h6');
     badge.setAttribute('src', data.badges[i].icon_url);
