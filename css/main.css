@@ -706,6 +706,14 @@ header {
   }
 }
 
+#treehouse-badges {
+  margin-bottom: 2rem;
+}
+
+#treehouse-badges div img {
+  width: 80%;
+}
+
 .code {
   font-family: alegreya-sans, sans-serif;
   font-weight: 400;
