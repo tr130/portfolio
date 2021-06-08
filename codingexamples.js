@@ -6,7 +6,9 @@ for (let i = 0; i < codeText.length; i++) {
 }
 
 examples.addEventListener('click', function(e) {
+  console.log('click')
   if (e.target.classList[1] == 'code-toggle-upper') {
+    console.log('clicked')
     if (e.target.textContent == 'See the code') {
       e.target.nextElementSibling.style.display = 'block';
       e.target.textContent = 'Hide the code';

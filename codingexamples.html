@@ -61,6 +61,259 @@
     <h1 class="code-header">Coding Examples</h1>
 
     <div class="code-example">
+      <h2>SQL Query showing a referee's average number of cards shown per game at Euro 2016</h2>
+      <p>Based on a SQL database of match information from UEFA Euro 2016, this query returns a showing
+        details of the number of cards shown by each referee, ordered by the average number of cards shown
+        per game by each referee.
+      </p>
+      <div class="code-container">
+        <h4 class="code-toggle code-toggle-upper">See the code</h4>
+        <div class="code-text">
+          <p>This query works on the database shown here.</p>
+          <a href="images/soccer-database.png"><img src="images/soccer-database.png" alt="euro 2016 database structure"></a>
+          <p>Based on the match_id information in the player bookings table, I generated totals for the number
+          of cards shown by each referee. The table only indicated a difference between yellow and red cards
+          by the value 'Y' shown in the 'sent_off' column, so to generate totals for the different cards I used
+          cases. I generated totals for the number of games refereed by each referee by reference to the match
+          master table, and used this to generate values for cards per game. I further formatted the yellow and red
+          cards columns to present the data in a more readable fashion. I assigned aliases to the tables in my join
+          statements to make the code less verbose.</p>
+
+          <pre>
+            <code>
+SELECT r.referee_name AS "Referee", 
+c.country_abbr AS "Country",
+COUNT(DISTINCT(m.match_no)) AS "Matches", 
+COUNT(1) AS "Cards",
+ROUND(
+  COUNT(1) *1.0 / 
+  COUNT(DISTINCT(m.match_no)), 2) 
+    AS "Cards Per Match",
+COUNT(
+  CASE
+    WHEN p.sent_off != 'Y'
+    THEN 1 ELSE NULL
+    END) 
+  || ' (' ||
+  ROUND(
+    COUNT(
+      CASE
+        WHEN p.sent_off != 'Y'
+        THEN 1 ELSE NULL
+        END) * 1.0 / 
+    COUNT(DISTINCT(m.match_no)), 2) 
+  || ')' 
+  AS "Yellows (per match)",
+COUNT(
+  CASE
+    WHEN p.sent_off = 'Y'
+    THEN 1 ELSE NULL
+    END) 
+  || ' (' ||
+  ROUND(
+    COUNT(
+      CASE
+        WHEN p.sent_off = 'Y'
+        THEN 1 ELSE NULL
+        END) * 1.0 / 
+    COUNT(DISTINCT(m.match_no)), 2) 
+  || ')' 
+  AS "Reds (per match)" 
+FROM 
+  player_booked p
+  JOIN match_mast m
+    ON p.match_no
+    = m.match_no
+  JOIN referee_mast r
+    ON m.referee_id
+    = r.referee_id
+  JOIN soccer_country c
+    ON r.country_id
+    = c.country_id
+GROUP BY "Referee", "Country"
+ORDER BY "Cards Per Match" DESC;
+            </code>
+          </pre>
+          <p>The query results in the following output:</p>
+
+          <table class="table table-bordered table-hover table-condensed">
+            <thead><tr><th title="Field #1">Referee</th>
+            <th title="Field #2">Country</th>
+            <th title="Field #3">Matches</th>
+            <th title="Field #4">Cards</th>
+            <th title="Field #5">Cards Per Match</th>
+            <th title="Field #6">Yellows (per match)</th>
+            <th title="Field #7">Reds (per match)</th>
+            </tr></thead>
+            <tbody><tr>
+            <td>Sergei Karasev</td>
+            <td>RUS</td>
+            <td align="right">2</td>
+            <td align="right">12</td>
+            <td align="right">6</td>
+            <td>12 (6.00)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>Pavel Kralovec</td>
+            <td>CZE</td>
+            <td align="right">2</td>
+            <td align="right">11</td>
+            <td align="right">5.5</td>
+            <td>11 (5.50)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>Mark Clattenburg</td>
+            <td>ENG</td>
+            <td align="right">4</td>
+            <td align="right">21</td>
+            <td align="right">5.25</td>
+            <td>21 (5.25)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>Nicola Rizzoli</td>
+            <td>ITA</td>
+            <td align="right">4</td>
+            <td align="right">20</td>
+            <td align="right">5</td>
+            <td>19 (4.75)</td>
+            <td>1 (0.25)</td>
+            </tr>
+            <tr>
+            <td>Ovidiu Hategan</td>
+            <td>ROU</td>
+            <td align="right">2</td>
+            <td align="right">9</td>
+            <td align="right">4.5</td>
+            <td>9 (4.50)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>Milorad Mazic</td>
+            <td>SRB</td>
+            <td align="right">3</td>
+            <td align="right">13</td>
+            <td align="right">4.33</td>
+            <td>13 (4.33)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>William Collum</td>
+            <td>SCO</td>
+            <td align="right">2</td>
+            <td align="right">8</td>
+            <td align="right">4</td>
+            <td>7 (3.50)</td>
+            <td>1 (0.50)</td>
+            </tr>
+            <tr>
+            <td>Svein Oddvar Moen</td>
+            <td>NOR</td>
+            <td align="right">2</td>
+            <td align="right">8</td>
+            <td align="right">4</td>
+            <td>8 (4.00)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>Viktor Kassai</td>
+            <td>HUN</td>
+            <td align="right">3</td>
+            <td align="right">12</td>
+            <td align="right">4</td>
+            <td>11 (3.67)</td>
+            <td>1 (0.33)</td>
+            </tr>
+            <tr>
+            <td>Bjorn Kuipers</td>
+            <td>NED</td>
+            <td align="right">3</td>
+            <td align="right">12</td>
+            <td align="right">4</td>
+            <td>12 (4.00)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>Jonas Eriksson</td>
+            <td>SWE</td>
+            <td align="right">3</td>
+            <td align="right">11</td>
+            <td align="right">3.67</td>
+            <td>11 (3.67)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>Cuneyt Cakir</td>
+            <td>TUR</td>
+            <td align="right">3</td>
+            <td align="right">11</td>
+            <td align="right">3.67</td>
+            <td>11 (3.67)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>Szymon Marciniak</td>
+            <td>POL</td>
+            <td align="right">3</td>
+            <td align="right">10</td>
+            <td align="right">3.33</td>
+            <td>10 (3.33)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>Carlos Velasco Carballo</td>
+            <td>ESP</td>
+            <td align="right">3</td>
+            <td align="right">10</td>
+            <td align="right">3.33</td>
+            <td>10 (3.33)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>Felix Brych</td>
+            <td>GER</td>
+            <td align="right">3</td>
+            <td align="right">9</td>
+            <td align="right">3</td>
+            <td>9 (3.00)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>Clement Turpin</td>
+            <td>FRA</td>
+            <td align="right">1</td>
+            <td align="right">3</td>
+            <td align="right">3</td>
+            <td>2 (2.00)</td>
+            <td>1 (1.00)</td>
+            </tr>
+            <tr>
+            <td>Martin Atkinson</td>
+            <td>ENG</td>
+            <td align="right">3</td>
+            <td align="right">9</td>
+            <td align="right">3</td>
+            <td>9 (3.00)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            <tr>
+            <td>Damir Skomina</td>
+            <td>SLO</td>
+            <td align="right">4</td>
+            <td align="right">12</td>
+            <td align="right">3</td>
+            <td>12 (3.00)</td>
+            <td>0 (0.00)</td>
+            </tr>
+            </tbody></table>
+          <h4 class="code-toggle code-toggle-lower">Hide the code</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-example">
       <h2>Mixin for setting colours on service card based on a map of themes.</h2>
       <p>As part of my Netmatters Homepage project, I used mixins and maps throughout my SCSS files in order to 
         set the colours of various elements based on the colours in the themes. Here is an example of how I set the 

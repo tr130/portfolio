@@ -738,6 +738,10 @@ header {
   max-width: 95%;
 }
 
+.code-example img {
+  width: 100%;
+}
+
 .code-example h2 {
   padding: 1.5rem;
   margin: 0;
@@ -746,6 +750,10 @@ header {
 .code-example p {
   padding: 0 1.5rem;
   font-size: 1.2rem;
+}
+
+.code-example th {
+  background-color: #ccc;
 }
 
 .code-container {
