@@ -5,7 +5,19 @@
   &-container {
     padding-right: 0.75rem;
     padding-left: 0.75rem;
-    
+
+    &:hover img {
+      transform: scale(1.2);
+      opacity: 0.6;
+    }
+  }
+
+  .card-top {
+    overflow: hidden;
+  }
+
+  img {
+    transition: all 0.3s ease-in-out;
   }
 
   a {
@@ -32,7 +44,7 @@
   }
 
   p {
-    min-height: 6rem;
+    min-height: 8rem;
   }
 
   h2 {

@@ -537,6 +537,19 @@ header {
   padding-left: 0.75rem;
 }
 
+.projects-container:hover img {
+  transform: scale(1.2);
+  opacity: 0.6;
+}
+
+.projects .card-top {
+  overflow: hidden;
+}
+
+.projects img {
+  transition: all 0.3s ease-in-out;
+}
+
 .projects a {
   text-decoration: none;
   color: #242b33;
@@ -562,7 +575,7 @@ header {
 }
 
 .projects p {
-  min-height: 6rem;
+  min-height: 8rem;
 }
 
 .projects h2 {
@@ -615,6 +628,10 @@ header {
 .contact input[type="submit"]:hover {
   background-color: #920303;
   color: #eee;
+}
+
+.contact .incomplete {
+  box-shadow: 0 0 5px 4px #920303;
 }
 
 @media only screen and (max-width: 767.5px) {

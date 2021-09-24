@@ -40,6 +40,10 @@
       color: #eee;
     }
   }
+
+  .incomplete {
+    box-shadow: 0 0 5px 4px $secondary-color;
+  }
 }
 
 @media only screen and (max-width: 767.5px) {
