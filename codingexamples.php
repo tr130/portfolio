@@ -1,4 +1,4 @@
-<?php include('inc/head') ?>
+<?php include('inc/head.php') ?>
   <link href="css/prism.css" rel="stylesheet" />
   <title>Henry Golding's Portfolio | Coding Examples</title>
 </head>

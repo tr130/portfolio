@@ -1,4 +1,4 @@
-<?php include('inc/head') ?>
+<?php include('inc/head.php') ?>
 <title>Henry Golding's Portfolio</title>
 </head>
 <body>
