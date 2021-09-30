@@ -2,46 +2,7 @@
 <title>Henry Golding's Portfolio</title>
 </head>
 <body>
-  <header>
-    <button id="sidebar-open" class="sidebar-open">
-      <span id="sidebar-open-out" class="sidebar-open iconify" data-icon="line-md:menu-fold-right" data-inline="false"></span>
-    </button>
-    <div id="sidebar-main" class="sidebar">
-      <div class="initials"><a href="index.html">HG</a></div>
-      <nav>
-        <ul class="navlist">
-          <li>
-            <a href="aboutme.html">About Me</a>
-          </li>
-          <li>
-            <a href="#projects">My Portfolio</a>
-          </li>
-          <li>
-            <a href="codingexamples.html">Coding Examples</a>
-          </li>
-          <li>
-            <a href="scsscheme.html">SCS Scheme</a>
-          </li>
-          <li class="contact-link">
-            <a href="#contact">Contact Me</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="social">
-        <ul>
-          <li>
-            <a href="https://github.com/tr130" target="_blank"><span class="iconify" data-icon="akar-icons:github-fill" data-inline="false"></span></a>
-          </li>
-          <li>
-            <a href="https://www.codewars.com/users/tr130" target="_blank"><span class="iconify" data-icon="cib:codewars" data-inline="false"></span></a>
-          </li>
-          <li>
-            <a href="https://www.hackerrank.com/hgolding" target="_blank"><span class="iconify" data-icon="simple-icons:hackerrank" data-inline="false"></span></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </header>
+  <?php include('inc/menu.php') ?>
   <main>
     <div class="banner">
       <div class="greeting">      
