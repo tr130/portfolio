@@ -29,7 +29,7 @@
           statements to make the code less verbose.</p>
 
           <pre>
-            <code>
+            <code class="language-sql">
 SELECT r.referee_name AS "Referee", 
 c.country_abbr AS "Country",
 COUNT(DISTINCT(m.match_no)) AS "Matches", 
@@ -272,7 +272,7 @@ ORDER BY "Cards Per Match" DESC;
       <h4 class="code-toggle code-toggle-upper">See the code</h4>
       <div class="code-text">
       <pre>
-        <code>
+        <code class="language-scss">
 //map containing hex values for page colours
 $themes: (
   'webd': #926fb1,
@@ -362,7 +362,7 @@ and relevant elements have class names such as
       <h4 class="code-toggle code-toggle-upper">See the code</h4>
       <div class="code-text">
       <pre>
-        <code>
+        <code class="language-python">
 #route is only called when form submitted using post
 
 @bp.route('confirmation', methods=('POST',))
